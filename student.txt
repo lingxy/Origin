@@ -1,0 +1,44 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+namespace Csharp_And_MySQL
+using System.Data;
+{   
+ public partial class Search : Form   
+ {        MySqlConnection connection = new MySqlConnection("datasource=localhost;port=3306;username=root;password=");
+        MySqlCommand command;
+        MySqlDataReader mdr;
+        public Search()     
+   {           
+        InitializeComponent();       
+  }        private void BTN_SEARCH_Click(object sender, EventArgs e)        {            connection.Open();
+            string selectQuery = "SELECT * FROM student.users WHERE id=" + int.Parse(textBoxID.Text);
+            command = new MySqlCommand(selectQuery, connection);
+            mdr = command.ExecuteReader();
+            if(mdr.Read())
+            {
+                textBoxFName.Text = mdr.GetString("fname");
+                textBoxLName.Text = mdr.GetString("lname");
+                textBoxAge.Text = mdr.GetInt32("age").ToString();
+            }
+            else
+            {
+                textBoxID.Text = "";
+                textBoxLName.Text = "";
+                textBoxFName.Text = "";
+                textBoxAge.Text = "";
+                MessageBox.Show("No Data For This Id");
+            }
+            connection.Close();
+        }    }}
+https://www.autotrader.co.za/car-videos/toyota/corolla
+https://www.google.com/doodles/celebrating-50-years-of-kids-coding
+https://www.youtube.com/watch?v=gDMLcaNHMD0
+http://crack2games.com/download-euro-coach-simulator-crack-free-pc/#
+http://modsfile.com/6l42epgps5u4/Mercedes_Benz_Jetbus_v1.30.rar.html
